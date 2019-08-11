@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Register as Voter</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            }
+        </style> 
+    </head>
+    <body>
+
+        <nav class="navbar navbar-inverse">
+            <div class="container" >
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Blockchain Ballot</a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="#">About</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/candidate/">Candidate Register</a></li>
+                        <li><a href="/voter/">Voter Register</a></li>
+                    </ul>
+                    </div>
+                </div>
+                </div>
+            </nav>
+            <div class="jumbotron" style="text-align: center; margin: 0; padding-top: 4px;">
+                    <h1>Register as Voter</h1>
+                </div>
+<div class="container">           
+    <div id="signupbox" style=" margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title">Sign Up</div>
+                <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" href="/voter/login/">Sign In</a></div>
+            </div>  
+            <div class="panel-body" >
+                <form method="POST" action="/voter/">
+                    {% csrf_token %}
+                        <div id="div_id_username" class="form-group required">
+                            <label for="name" class="control-label col-md-4  requiredField"> Name<span class="asteriskField">*</span> </label>
+                            <div class="controls col-md-8 ">
+                                <input class="input-md  textinput textInput form-control" id="name" name="name" placeholder="Enter Your Name" style="margin-bottom: 10px" type="text" />
+                            </div>
+                        </div>
+                        <div id="div_id_email" class="form-group required">
+                            <label for="id_email" class="control-label col-md-4  requiredField"> E-mail<span class="asteriskField">*</span> </label>
+                            <div class="controls col-md-8 ">
+                                <input class="input-md emailinput form-control" id="id_email" name="email" placeholder="Your current email address" style="margin-bottom: 10px" type="email" />
+                            </div>     
+                        </div>
+                        <div id="div_id_password1" class="form-group required">
+                            <label for="id_password1" class="control-label col-md-4  requiredField">Password<span class="asteriskField">*</span> </label>
+                            <div class="controls col-md-8 "> 
+                                <input class="input-md textinput textInput form-control" id="id_password1" name="password1" placeholder="Create a password" style="margin-bottom: 10px" type="password" />
+                            </div>
+                        </div>
+                        <div id="div_id_password2" class="form-group required">
+                             <label for="id_password2" class="control-label col-md-4  requiredField"> Re:password<span class="asteriskField">*</span> </label>
+                             <div class="controls col-md-8 ">
+                                <input class="input-md textinput textInput form-control" id="id_password2" name="password2" placeholder="Confirm your password" style="margin-bottom: 10px" type="password" />
+                            </div>
+                        </div>
+                        <div id="div_id_gender" class="form-group required">
+                            <label for="id_gender"  class="control-label col-md-4  requiredField"> Gender<span class="asteriskField">*</span> </label>
+                            <div class="controls col-md-8 "  style="margin-bottom: 10px">
+                                 <label class="radio-inline"> <input type="radio" name="gender" id="id_gender_1" value="M"  style="margin-bottom: 10px">Male</label>
+                                 <label class="radio-inline"> <input type="radio" name="gender" id="id_gender_2" value="F"  style="margin-bottom: 10px">Female </label>
+                            </div>
+                        </div>
+                        <div id="div_id_number" class="form-group required">
+                             <label for="id_number" class="control-label col-md-4  requiredField"> Contact Number<span class="asteriskField">*</span> </label>
+                             <div class="controls col-md-8 ">
+                                 <input class="input-md textinput textInput form-control" id="id_number" name="number" placeholder="provide your number" style="margin-bottom: 10px" type="text" />
+                            </div> 
+                        </div> 
+                        <div id="div_id_number" class="form-group required">
+                                <label for="id_number" class="control-label col-md-4  requiredField"> Aadhar Number<span class="asteriskField">*</span> </label>
+                                <div class="controls col-md-8 ">
+                                    <input class="input-md textinput textInput form-control" id="id_number" name="number" placeholder="Enter Aadhar Number" style="margin-bottom: 10px" type="text" />
+                               </div> 
+                           </div> 
+                        <div class="form-group">
+                            <div class="controls col-md-offset-4 col-md-8 ">
+                                <div id="div_id_terms" class="checkbox required">
+                                    <label for="id_terms" class=" requiredField">
+                                         <input class="input-ms checkboxinput" id="id_terms" name="terms" style="margin-bottom: 10px" type="checkbox" />
+                                         Agree with the terms and conditions
+                                    </label>
+                                </div> 
+                                    
+                            </div>
+                        </div> 
+                        <div class="form-group"> 
+                            <div class="aab controls col-md-4 "></div>
+                            <div class="controls col-md-8 ">
+                                <input type="submit" name="Signup" value="Signup" class="btn btn-primary btn btn-info" id="submit-id-signup" />
+                            </div>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div> 
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    </body>
+</html>

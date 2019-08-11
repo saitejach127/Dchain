@@ -28,6 +28,3 @@ There are 3 roles assigned in the logic of the solidity smart contract
  <li>MySQL DB for database</li>
 </ol>
 
-recommend
-ask voter for 
-
