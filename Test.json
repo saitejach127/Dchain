@@ -1,0 +1,147 @@
+{
+    "ApplicationName": "Ballot",
+    "DisplayName": "Decentralised Election",
+    "Description": "A simple application to conduct Elections Online",
+    "ApplicationRoles": [
+      {
+        "Name": "admin",
+        "Description": "admin"
+      },
+      {
+        "Name": "voter",
+        "Description": "voter"
+      }
+      {
+        "Name": "candidate",
+        "Description": "candidate"
+      }
+    ],
+    "Workflows": [
+      {
+        "Name": "Ballot",
+        "DisplayName": "Decentralised Election",
+        "Description": "A simple application to conduct Elections Online",
+        "Initiators": [ "admin" ],
+        "StartState": "Happening",
+        "Properties": [
+          {
+            "Name": "State",
+            "DisplayName": "State",
+            "Description": "Holds the state of the contract.",
+            "Type": {
+              "Name": "state"
+            }
+          },
+          {
+            "Name": "admin",
+            "DisplayName": "Admin",
+            "Description": "Admin to manage elections",
+            "Type": {
+              "Name": "admin"
+            }
+          },
+          {
+            "Name": "currentWinner",
+            "DisplayName": "Current Winner",
+            "Description": "On going winner ",
+            "Type": {
+              "Name": "string"
+            }
+          }
+        ],
+        "Constructor": {
+          "Parameters": [
+            {
+              "Name": "name",
+              "Description": "...",
+              "DisplayName": "Name of Election",
+              "Type": {
+                "Name": "string"
+              }
+            }
+          ]
+        },
+        "Functions": [
+          {
+            "Name": "addCandidate",
+            "DisplayName": "Add Candidate",
+            "Description": "...",
+            "Parameters": [
+              {
+                "Name": "_name",
+                "Description": "...",
+                "DisplayName": "Name of Candidate",
+                "Type": {
+                  "Name": "string"
+                }
+              }
+            ]
+          },
+          {
+            "Name": "vote",
+            "DisplayName": "Vote",
+            "Description": "...",
+            "Parameters": [
+              {
+                "Name": "_name",
+                "Description": "...",
+                "DisplayName": "Candidate Name",
+                "Type": {
+                  "Name": "string"
+                }
+              },
+              {
+                "Name": "_addhar",
+                "Description": "...",
+                "DisplayName": "Your Aadhar",
+                "Type": {
+                  "Name": "string"
+                }
+              }
+            ]
+          },
+          {
+            "Name": "addVoter",
+            "DisplayName": "Add Voter",
+            "Description": "...",
+            "Parameters": [
+              {
+                "Name": "_addhar",
+                "Description": "...",
+                "DisplayName": "Aadhar of Voter",
+                "Type": {
+                  "Name": "string"
+                }
+              }
+            ]
+          },
+          {
+            "Name": "vote",
+            "DisplayName": "Vote",
+            "Description": "...",
+            "Parameters": [] 
+          }
+        ],
+        "States": [
+          {
+            "Name": "Happening",
+            "DisplayName": "Happening",
+            "Description": "...",
+            "PercentComplete": 10,
+            "Value": 0,
+            "Style": "Success",
+            "Transitions": [
+              {
+                "AllowedRoles": ["admin","voter","Candidate"],
+                "AllowedInstanceRoles": [],
+                "Description": "...",
+                "Function": "vote",
+                "NextStates": [ "Ended" ],
+                "DisplayName": "On Going Elections"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }

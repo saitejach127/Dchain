@@ -19,7 +19,15 @@ from register import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index),
+    path('home/', views.index),
     path('voter/',views.voterRegister),
     path('candidate/', views.candidateRegister),
+    path('adminpanel/', views.admin_validate),
+    path('createElection/', views.createElection),
+    path('currentElections/', views.currentElection),
+    path('validateCandidate/', views.validateCandidate),
+    path('validateVoter/', views.validateVoter),
+    path('', views.home),
+    path('elec/<int:pk>/', views.index),
+    path('end/<int:pk>/',views.end),
 ]
