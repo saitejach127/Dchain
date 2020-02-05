@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Apply Vote Dchain</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+    <div class="ui secondary  menu" style="background-color: grey; color: black;">
+        <a class="active item" href="/">
+          Home
+        </a>
+        <a class="item" href="/dashboard">
+            Dashboard
+        </a>
+        <div class="right menu">
+          <a class="ui item" href="/auth/signout/">
+            Logout
+          </a>
+        </div>
+      </div>
+      <br><br>
+<section id="tabs" class="project-tab">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <nav>
+                            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Apply For Vote</a>
+                                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Elections</a>
+                            </div>
+                        </nav>
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                <br><br>
+                                {% if notapplied %}
+                                
+                                   <center> <h1>Apply for voting and get your voter ID</h1>
+                                    <a class="btn btn-primary" href="/applyvote/">Apply Vote</a>
+                                    </center>
+                                {% else %}
+                                <center> <h1>Status Of Your application</h1></center>
+                                    {% if app %}
+                                    <center> <h3>Congrats Approved</h3>
+                                        <p>Your id is {{id}}</p>
+                                    </center>
+                                    {% else %}
+                                    <center> <h3>Still in process Please wait</h3>
+                                        <p style="color: red;">Admin has to review your application and verify your authenticity for voting</p></center>
+                                    {%endif%}
+                                {%endif%}
+                            </div>
+                            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                <br><br>
+                                <center>
+                                <h1>Vote For Elections</h1>
+                                <p>Your Vote Counts</p>
+                                {% for election in elections %}
+                                <div class="card" style="width: 18rem;">
+                                    <div class="card-body">
+                                      <h5 class="card-title">{{election.name}}</h5>
+                                      <p class="card-text">This election is going on in the constituency : {{election.constituency}}</p>
+                                      <a href="/vote/{{election.pk}}" class="btn btn-primary">Vote</a>
+                                    </div>
+                                  </div>
+
+                                {%endfor%}
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+</body>
+</html>

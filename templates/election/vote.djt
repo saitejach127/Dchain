@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vote for {{election.name}}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+    <div class="ui secondary  menu" style="background-color: grey; color: black;">
+        <a class="active item" href="/">
+          Home
+        </a>
+        <a class="item" href="/dashboard">
+            Dashboard
+        </a>
+        <div class="right menu">
+          <a class="ui item" href="/auth/signout/">
+            Logout
+          </a>
+        </div>
+      </div>
+      <br><br>
+
+      <div class="container">
+          <div id="face-recog">
+              <h1>Verifying....</h1>
+              <video autoplay id="video"></video>
+          </div>
+          <div id="candidates" style="display: none;">
+            <h1>Your Vote Counts</h1>
+            <h3 style="color: red;">We highly Recommend you to look into Manifesto before voting</h3>
+            <table class="table" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Party Name</th>
+                        <th>Party Short</th>
+                        <th>Party Symbol</th>
+                        <th>Manifesto</th>
+                        <th>Vote</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for candidate in candidates %}
+                    <tr>
+                        <td>{{candidate.party.party_name}}</td>
+                        <td>{{candidate.party.party_short}}</td>
+                        <td><img src="/media/{{candidate.party.party_symbol}}" alt="" width="32" height="32"></td>
+                        <td><a href="/media/{{candidate.manifesto}}">Manifesto</a></td>
+                        <td><a href="#" class="btn btn-primary">Vote</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+          </div>
+      </div>
+
+      <script>
+          navigator.mediaDevices.getUserMedia({video:true}).then((stream) => {
+              document.getElementById('video').srcObject = stream
+              document.getElementById('video').play()
+          })
+
+          setTimeout(() => {
+            console.log("clearing");
+            document.getElementById("face-recog").style.display = "none";
+            document.getElementById("candidates").style.display = "";
+          }, 1000)
+
+      </script>
+
+</body>
+</html>

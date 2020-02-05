@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Candidate Election Register Dchain</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+    <div class="ui secondary  menu" style="background-color: grey; color: black;">
+        <a class="active item" href="/">
+          Home
+        </a>
+        <a class="item" href="/dashboard">
+            Dashboard
+        </a>
+        <div class="right menu">
+          <a class="ui item" href="/auth/signout/">
+            Logout
+          </a>
+        </div>
+      </div>
+      <br><br>
+        <div class="container">
+      <center>
+
+        <h1>Register For Election</h1>
+        <br><br>
+        <form action="/registerCandidate/" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="exampleInputEmail1">Name of the Election</label>
+              <select name="pke" id="" class="form-control">
+                  {% for e in elections %}
+                  <option value="{{e.pk}}">{{e.name}}</option>
+                  {% endfor %}
+              </select>
+              <div class="form-group">
+                  <label for="">Manifesto</label>
+                  <input type="file" name="maifesto" class="form-control">
+              </div>
+              <input type="hidden" name="pkc" value="{{candidate.pk}}">
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+
+      </center>
+      </div>
+
+        
+</body>
+</html>
