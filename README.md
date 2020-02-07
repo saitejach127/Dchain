@@ -26,6 +26,8 @@ There are 3 roles assigned in the logic of the solidity smart contract
   <li>Inter Planetary File System (for storing files) </li>
  <li>Django Web Framework(For User Interface)</li>
  <li>MySQL DB for database</li>
+ <li>Azure Cognitive services (Face Recognition )</li>
+ <li>Azure Logic App</li>
 </ol>
 
 ## Demo 

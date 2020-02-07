@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from .models import *
+from election.models import Tokens
 
 # Create your views here.
 
@@ -20,6 +21,10 @@ def signup(request):
         user.save()
         user = authenticate(username = username, password = password)
         login(request, user)
+        token = Tokens()
+        token.user = user
+        token.count = 0
+        token.save()
         if request.POST["iswhat"] == "voter":
             profile = Userprofile()
             profile.user = user 
@@ -59,7 +64,7 @@ def signin(request):
 
 def signout(request):
     logout(request)
-    return redirect('/dashboard')
+    return redirect('/')
 
 def party_register(request):
     if request.method == "POST":
@@ -75,4 +80,5 @@ def party_register(request):
         return redirect('/candidatepanel')
     return render(request, 'authentication/profile.djt')
         
-
+def home(request):
+    return render(request, 'election/home.djt')

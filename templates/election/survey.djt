@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Apply Vote Dchain</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+    <div class="ui secondary  menu" style="background-color: grey; color: black;">
+        <a class="active item" href="/">
+          Home
+        </a>
+        <a class="item" href="/dashboard">
+            Dashboard
+        </a>
+        <div class="right menu">
+          <a class="ui item" href="/auth/signout/">
+            Logout
+          </a>
+        </div>
+      </div>
+      <br><br>
+      <div class="container">
+        {% for reg in regs %}
+        <div class="jumbotron">
+
+            <h3>{{reg.party.party_name}}</h3>
+            <h4>{{reg.party.name}}</h4>
+            <a href="/media/{{reg.manifesto}}">manifesto</a><br>
+            <form action="/surveysubmit/" method="POST">
+              {% csrf_token %}
+              <input type="hidden" name="pke" id="" value="{{reg.election.pk}}">
+              <input type="hidden" name="pkc" value="{{reg.pk}}">
+              Score: 
+            <select name="score">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select><br>
+            Comments: <br> 
+            <textarea name="comment" id="" cols="100" rows="10"></textarea><br>
+            <input type="submit" name="" id="" class="btn btn-success">
+            </form>
+        </div>
+        {% endfor %}
+      </div>
+</body>

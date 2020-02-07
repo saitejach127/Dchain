@@ -4,3 +4,5 @@ from .models import *
 admin.site.register(Voterid)
 admin.site.register(Election)
 admin.site.register(CandidateRegistrations)
+admin.site.register(Tokens)
+admin.site.register(Proofread)

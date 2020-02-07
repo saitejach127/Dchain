@@ -33,4 +33,30 @@ class CandidateRegistrations(models.Model):
     def __str__(self):
         return self.party.party_name
 
+class Votes(models.Model):
+    election = models.ForeignKey(Election,on_delete=models.CASCADE)
+    candidate = models.ForeignKey(CandidateProfile,on_delete=models.CASCADE)
+    count = models.IntegerField()
+
+    def __str__(self):
+        return self.candidate.party_name
+
+class Tokens(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    count = models.IntegerField()
+
+    def __str__(self):
+        return self.user.username
+
+class Proofread(models.Model):
+    election = models.ForeignKey(Election,on_delete=models.CASCADE)
+    manifesto = models.ForeignKey(CandidateRegistrations,on_delete=models.CASCADE)
+    score = models.IntegerField(default=0)
+    comments = models.TextField(default="")
+
+    def __str__(self):
+        return self.manifesto.party.party_name
+
+
+
 

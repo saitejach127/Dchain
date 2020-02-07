@@ -72,6 +72,7 @@
                                             <th>Constituency</th>
                                             <th>Start Date</th>
                                             <th>End Date</th>
+                                            <th>Results</th>
                                             <th>End</th>
                                         </tr>
                                     </thead>
@@ -82,6 +83,7 @@
                                             <td>{{election.constituency}}</td>
                                             <td>{{election.start_date}}</td>
                                             <td>{{election.end_date}}</td>
+                                            <th><a href="/results/{{election.pk}}" class="btn btn-primary">Results</a></th>
                                             <td><a href="/adminpanel" class="btn btn-danger">End</a></td>
                                         </tr>
                                         {% endfor %}

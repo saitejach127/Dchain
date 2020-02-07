@@ -1,4 +1,4 @@
-pragma solidity>=0.4.25 <0.6.2;
+pragma solidity>=0.4.25<0.6.2;
 
 contract Ballot{
     

@@ -36,6 +36,7 @@
           <div id="candidates" style="display: none;">
             <h1>Your Vote Counts</h1>
             <h3 style="color: red;">We highly Recommend you to look into Manifesto before voting</h3>
+            <h4 style="color: red;">A survey has been conducted which was sent to random people and the people scored and commented the manifesto based on previous  Promises made vs. Promises Kept, Attendance in the House, Criminal Record, Fund Utilization, Questions asked in the House</h4>
             <table class="table" cellspacing="0">
                 <thead>
                     <tr>
@@ -43,17 +44,26 @@
                         <th>Party Short</th>
                         <th>Party Symbol</th>
                         <th>Manifesto</th>
+                        <th>Score</th>
+                        <th>Comments</th>
                         <th>Vote</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for candidate in candidates %}
                     <tr>
-                        <td>{{candidate.party.party_name}}</td>
-                        <td>{{candidate.party.party_short}}</td>
-                        <td><img src="/media/{{candidate.party.party_symbol}}" alt="" width="32" height="32"></td>
-                        <td><a href="/media/{{candidate.manifesto}}">Manifesto</a></td>
-                        <td><a href="#" class="btn btn-primary">Vote</a></td>
+                        <td>{{candidate.data.party.party_name}}</td>
+                        <td>{{candidate.data.party.party_short}}</td>
+                        <td><img src="/media/{{candidate.data.party.party_symbol}}" alt="" width="32" height="32"></td>
+                        <td><a href="/media/{{candidate.data.manifesto}}">Manifesto</a></td>
+                        <td>{{candidate.score.score}} </td>
+                        <td><a href="/survey/{{candidate.score.pk}}">comments</a></td>
+                        <td><form action="/castVote/" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" value="{{election.pk}}" name="pke">
+                            <input type="hidden" value="{{candidate.data.party.pk}}" name="pkc">
+                            <button type="submit" class="btn btn-primary">Vote</button>
+                        </form></td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -71,7 +81,7 @@
             console.log("clearing");
             document.getElementById("face-recog").style.display = "none";
             document.getElementById("candidates").style.display = "";
-          }, 1000)
+          }, 4000)
 
       </script>
 

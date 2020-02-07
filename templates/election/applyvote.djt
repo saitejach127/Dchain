@@ -27,6 +27,7 @@
         </div>
       </div>
       <br><br>
+      <center><h3>Your Tokens : {{tokens.count}}</h3></center>
 <section id="tabs" class="project-tab">
             <div class="container">
                 <div class="row">
@@ -65,9 +66,13 @@
                                 {% for election in elections %}
                                 <div class="card" style="width: 18rem;">
                                     <div class="card-body">
-                                      <h5 class="card-title">{{election.name}}</h5>
-                                      <p class="card-text">This election is going on in the constituency : {{election.constituency}}</p>
-                                      <a href="/vote/{{election.pk}}" class="btn btn-primary">Vote</a>
+                                      <h5 class="card-title">{{election.election.name}}</h5>
+                                      <p class="card-text">This election is going on in the constituency : {{election.election.constituency}}</p>
+                                      <a href="/vote/{{election.election.pk}}" class="btn btn-primary">Vote</a>
+                                      <a href="/results/{{election.election.pk}}" class="btn btn-primary">Results</a>
+                                      {% if election.yes %}
+                                      <a href="/survey/{{election.election.pk}}" class="btn btn-primary">Take Survey</a>
+                                      {% endif %}
                                     </div>
                                   </div>
 

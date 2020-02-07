@@ -260,11 +260,33 @@ select option {
                 </div>
             </div>
 
+            <div class="row" >
+              <a href="#" class="btn btn-primary" onclick="takeVideo()">Take Video</a>
+              <div class="input-group">
+                <video id="video" width="450" height="450"></video>
+                <p id="done" style="display: none;">Done taking</p>
+              </div>
+            </div>
+
             <div class="row">
                 <input type="submit" value="submit"/>                      
             </div>
                   
         </form>
     </div>
+    <script>
+      function takeVideo(){
+        navigator.mediaDevices.getUserMedia({video:true}).then((stream) => {
+          document.getElementById("video").srcObject = stream;
+          document.getElementById("video").play();
+        });
+
+        setTimeout(()=> {
+          document.getElementById("video").style.display = "none";
+          document.getElementById("done").style.display = "";
+        },10000);
+
+      }
+    </script>
 </body>
 </html>
