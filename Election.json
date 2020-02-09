@@ -1,7 +1,7 @@
 {
-    "ApplicationName": "Token",
-    "DisplayName": "Azure Tokens",
-    "Description": "A ERC20 Token to distribute Tokens",
+    "ApplicationName": "DecentralisedElection",
+    "DisplayName": "Election",
+    "Description": "To conduct Election counting",
     "ApplicationRoles": [
       {
         "Name": "admin",
