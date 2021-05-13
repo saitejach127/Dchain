@@ -10,35 +10,22 @@ def signup(request):
     if request.user.is_active == True and request.user.is_authenticated:
         return redirect('/')
     if request.method == 'POST':
-        print(request.POST)
         username  = request.POST['username']
         password  = request.POST['password']
         first_name = request.POST['first_name']
         last_name  = request.POST['last_name']
-        aadhar = request.POST["aadhar"]
-        user = User.objects.create_user(username = username, first_name = first_name, last_name = last_name)
+        email = request.POST["email"]
+        user = User.objects.create_user(username = username, first_name = first_name, last_name = last_name, email=email)
         user.set_password(password)
         user.save()
         user = authenticate(username = username, password = password)
         login(request, user)
-        token = Tokens()
-        token.user = user
-        token.count = 0
-        token.save()
-        if request.POST["iswhat"] == "voter":
-            profile = Userprofile()
-            profile.user = user 
-            profile.aadhar_number = aadhar
-            profile.save()
-            return redirect('/dashboard')
-        else :
-            return redirect('/auth/profile/')
         return redirect('/')
-    return render(request, 'authentication/signup.djt', None)
+    return render(request, 'signup.djt')
 
 def signin(request):
     if request.user.is_authenticated and request.user.is_active == True :
-        return redirect('/dashboard')
+        return redirect('/jsonfolders')
     if request.method == 'POST':
         user_name = request.POST['username']
         try:
@@ -49,18 +36,18 @@ def signin(request):
                 user = User.objects.filter(email = user_name).last()
                 username = user.username
             except:
-                return render(request, 'authentication/signin.djt', {'error' : 'User-Name/Password Invalid'})
+                return render(request, 'signin.html', {'error' : 'User-Name/Password Invalid'})
         password = request.POST['password']
         user = authenticate(username = username, password = password)
         if user == None :
-            return render(request, 'authentication/signin.djt', {'error' : 'User-Name/Password Invalid'})
+            return render(request, 'signin.html', {'error' : 'User-Name/Password Invalid'})
         elif user.is_active == False :
             login(request, user)
-            return redirect('/dashboard')
+            return redirect('/jsonfolders')
         else : 
             login(request, user)
-            return redirect('/dashboard')
-    return render(request, 'authentication/signin.djt', None)
+            return redirect('/jsonfolders')
+    return render(request, 'signin.html', None)
 
 def signout(request):
     logout(request)

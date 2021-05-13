@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload</title>
+</head>
+<body>
+    <form method="POST" action="/data">
+        {% csrf_token %}
+        <input type="file" id="fileupload" accept="application/json" />
+        <input type="hidden" name="data" id="data" />
+        <button type="submit">Submit</button>
+    </form>
+    <script>
+        document.getElementById("fileupload").onchange = function(e) {
+            var file = e.target.files[0];
+            var reader = new FileReader();
+            reader.onload = () => {
+                console.log(reader.result);
+                var parsed = JSON.parse(reader.result);
+                console.log(parsed);
+                document.getElementById("data").value = reader.result
+                console.log(JSON.parse(document.getElementById("data").value))
+            }
+            reader.readAsBinaryString(file);
+        }
+    </script>
+</body>
+</html>
